@@ -1,6 +1,7 @@
 package com.aghasemi.kotlinmovieapp.data.network.base
 
 import com.aghasemi.kotlinmovieapp.data.network.apis.MovieInterface
+import com.aghasemi.kotlinmovieapp.data.network.base.adapter.LiveDataCallAdapterFactory
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,7 +23,7 @@ object ApiClient {
                 //.addConverterFactory(new NullOnEmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 //.addConverterFactory(ScalarsConverterFactory.create())
-                //.addCallAdapterFactory(new LiveDataCallAdapterFactory())
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 //.client(provideOkHttpClientInstance())
                 .client(provideOkHttpClient())
                 .build()
