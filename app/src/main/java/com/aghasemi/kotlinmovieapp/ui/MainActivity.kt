@@ -1,4 +1,4 @@
-package com.aghasemi.kotlinmovieapp
+package com.aghasemi.kotlinmovieapp.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,7 +7,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.aghasemi.kotlinmovieapp.R
 import com.aghasemi.kotlinmovieapp.databinding.ActivityMainBinding
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +33,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //update locale
+        val configuration = resources.configuration
+        configuration.setLayoutDirection(Locale("fa"))
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }
