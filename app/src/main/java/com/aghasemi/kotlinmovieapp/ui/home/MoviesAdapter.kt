@@ -7,13 +7,19 @@ import com.aghasemi.kotlinmovieapp.databinding.ItemMovieBinding
 import com.aghasemi.kotlinmovieapp.model.Movie
 import com.bumptech.glide.Glide
 
-class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.VH>() {
+class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.VH>() {
 
     private var movies = ArrayList<Movie>()
+    private var listener: Listener? = null
 
-    fun setMovies(movieList: ArrayList<Movie>){
+    fun setMovies(movieList: ArrayList<Movie>) {
         this.movies = movieList
     }
+
+    fun setListener(listener: Listener) {
+        this.listener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context))
         return VH(binding)
@@ -28,13 +34,21 @@ class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.VH>() {
         holder.bind(movie)
     }
 
-    class VH(private var binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private var binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.txtTitle.text = movie.title
 
             Glide.with(binding.root.context)
                 .load(movie.poster)
                 .into(binding.imgPoster)
+
+            binding.root.setOnClickListener {
+                listener?.onClick(movie)
+            }
         }
+    }
+
+    interface Listener {
+        fun onClick(movie: Movie)
     }
 }

@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -47,6 +48,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.vectordrawable:vectordrawable:1.1.0")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     //lifecycle
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")

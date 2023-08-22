@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.aghasemi.kotlinmovieapp.R
 import com.aghasemi.kotlinmovieapp.data.network.base.Failure
 import com.aghasemi.kotlinmovieapp.data.network.base.Loading
 import com.aghasemi.kotlinmovieapp.data.network.base.Success
@@ -55,7 +57,17 @@ class HomeFragment : Fragment() {
     private fun updateMovies(movies: ArrayList<Movie>) {
         val adapter = MoviesAdapter()
         adapter.setMovies(movies)
+        adapter.setListener(object:MoviesAdapter.Listener{
+            override fun onClick(movie: Movie) {
+                Log.d("##TAG", "onClick: "+movie.title)
+                val bundle = Bundle()
+                bundle.putParcelable("movie", movie)
+                findNavController().navigate(R.id.action_navigation_home_to_movieDetailsFragment, bundle)
+            }
+
+        })
         binding.rvMovies.adapter = adapter
+
     }
 
     override fun onDestroyView() {
