@@ -2,9 +2,14 @@ package com.aghasemi.kotlinmovieapp.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Movie(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     @SerializedName("Title")
     val title: String?,
     @SerializedName("Year")
@@ -17,6 +22,7 @@ data class Movie(
     val poster: String?,
 ) :Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -25,6 +31,7 @@ data class Movie(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(title)
         parcel.writeString(year)
         parcel.writeString(imdbID)
@@ -45,5 +52,4 @@ data class Movie(
             return arrayOfNulls(size)
         }
     }
-
 }

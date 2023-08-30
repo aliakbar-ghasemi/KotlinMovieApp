@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aghasemi.kotlinmovieapp.R
 import com.aghasemi.kotlinmovieapp.data.network.base.Failure
@@ -14,11 +14,11 @@ import com.aghasemi.kotlinmovieapp.data.network.base.Loading
 import com.aghasemi.kotlinmovieapp.data.network.base.Success
 import com.aghasemi.kotlinmovieapp.databinding.FragmentHomeBinding
 import com.aghasemi.kotlinmovieapp.model.Movie
-import java.util.ArrayList
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,8 +29,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -46,17 +44,17 @@ class HomeFragment : Fragment() {
                 }
 
                 is Success -> {
-                    Log.d("##TAG", "onCreateView: Success" + it.data?.search)
-                    it.data?.search?.let { movies -> updateMovies(movies) }
+                    Log.d("##TAG", "onCreateView: Success" + it.data)
+                    it.data?.let { movies -> updateMovies(movies) }
                 }
             }
         }
         return root
     }
 
-    private fun updateMovies(movies: ArrayList<Movie>) {
+    private fun updateMovies(movies: List<Movie>) {
         val adapter = MoviesAdapter()
-        adapter.setMovies(movies)
+        adapter.setMovies(ArrayList(movies))
         adapter.setListener(object:MoviesAdapter.Listener{
             override fun onClick(movie: Movie) {
                 Log.d("##TAG", "onClick: "+movie.title)
