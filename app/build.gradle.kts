@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
-    id("com.google.devtools.ksp")
+    //id("com.google.devtools.ksp")
 }
 
 android {
@@ -66,14 +66,22 @@ dependencies {
 
     //glide
     implementation("com.github.bumptech.glide:glide:4.14.2")
-    ksp("com.github.bumptech.glide:ksp:4.14.2")
+    kapt("com.github.bumptech.glide:ksp:4.14.2")
 
     //room
     val roomVersion = "2.5.2"
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+
+    //dagger
+    val daggerVersion = "2.33"
+    implementation("com.google.dagger:dagger:$daggerVersion")
+    implementation("com.google.dagger:dagger-android:$daggerVersion")
+    implementation("com.google.dagger:dagger-android-support:$daggerVersion")
+    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+    kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
 
     //test
     testImplementation("junit:junit:4.13.2")

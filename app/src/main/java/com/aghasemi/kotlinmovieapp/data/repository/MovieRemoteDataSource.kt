@@ -6,8 +6,9 @@ import com.aghasemi.kotlinmovieapp.data.network.base.ApiResponse
 import com.aghasemi.kotlinmovieapp.data.network.base.OnlineResource
 import com.aghasemi.kotlinmovieapp.data.network.base.Resource
 import com.aghasemi.kotlinmovieapp.model.MovieListResponse
+import javax.inject.Inject
 
-class MovieRemoteDataSource {
+class MovieRemoteDataSource @Inject constructor() {
     private var movieInterface = ApiClient.getMovieInterface()
 
     fun getMovieList(): LiveData<Resource<MovieListResponse>> {

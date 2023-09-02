@@ -2,7 +2,6 @@ package com.aghasemi.kotlinmovieapp.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,10 +9,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.aghasemi.kotlinmovieapp.R
 import com.aghasemi.kotlinmovieapp.databinding.ActivityMainBinding
+import com.aghasemi.kotlinmovieapp.ui.base.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
