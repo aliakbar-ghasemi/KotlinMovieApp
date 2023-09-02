@@ -5,17 +5,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aghasemi.kotlinmovieapp.R
+import com.aghasemi.kotlinmovieapp.base.BaseFragment
 import com.aghasemi.kotlinmovieapp.data.network.base.Failure
 import com.aghasemi.kotlinmovieapp.data.network.base.Loading
 import com.aghasemi.kotlinmovieapp.data.network.base.Success
 import com.aghasemi.kotlinmovieapp.databinding.FragmentHomeBinding
 import com.aghasemi.kotlinmovieapp.model.Movie
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeFragment : Fragment() {
+@AndroidEntryPoint
+class HomeFragment : BaseFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val homeViewModel by viewModels<HomeViewModel>()

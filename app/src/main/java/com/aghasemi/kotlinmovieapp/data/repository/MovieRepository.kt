@@ -1,6 +1,5 @@
 package com.aghasemi.kotlinmovieapp.data.repository
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.aghasemi.kotlinmovieapp.data.network.base.ApiResponse
 import com.aghasemi.kotlinmovieapp.data.network.base.AppExecutors
@@ -8,14 +7,12 @@ import com.aghasemi.kotlinmovieapp.data.network.base.NetworkBoundResource
 import com.aghasemi.kotlinmovieapp.data.network.base.Resource
 import com.aghasemi.kotlinmovieapp.model.Movie
 import com.aghasemi.kotlinmovieapp.model.MovieListResponse
+import javax.inject.Inject
 
-class MovieRepository(application: Application) {
-    private var movieRemoteDataSource = MovieRemoteDataSource()
-    private val movieLocalDataSource: MovieLocalDataSource
-
-    init {
-        movieLocalDataSource = MovieLocalDataSource(application)
-    }
+class MovieRepository @Inject constructor(
+    var movieRemoteDataSource: MovieRemoteDataSource,
+    var movieLocalDataSource: MovieLocalDataSource
+) {
 
     fun getMovieList(): LiveData<Resource<List<Movie>>> =
         object :
