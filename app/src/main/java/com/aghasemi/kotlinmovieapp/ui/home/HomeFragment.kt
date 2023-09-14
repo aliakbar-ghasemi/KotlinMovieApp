@@ -6,19 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aghasemi.kotlinmovieapp.R
 import com.aghasemi.kotlinmovieapp.data.network.base.Failure
 import com.aghasemi.kotlinmovieapp.data.network.base.Loading
 import com.aghasemi.kotlinmovieapp.data.network.base.Success
+import com.aghasemi.kotlinmovieapp.data.repository.MovieRemoteDataSource
 import com.aghasemi.kotlinmovieapp.databinding.FragmentHomeBinding
 import com.aghasemi.kotlinmovieapp.model.Movie
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
+    val movieRemoteDataSource: MovieRemoteDataSource by inject()
+
     private var _binding: FragmentHomeBinding? = null
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel: HomeViewModel by viewModel()
 
     // This property is only valid between onCreateView and
     // onDestroyView.

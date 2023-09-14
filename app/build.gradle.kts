@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
     id("com.google.devtools.ksp")
 }
 
@@ -74,6 +74,11 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+
+    //koin
+    val koinVersion = "3.4.3"
+    implementation("io.insert-koin:koin-android:$koinVersion")
+    implementation("io.insert-koin:koin-androidx-navigation:$koinVersion") // Navigation Graph
 
     //test
     testImplementation("junit:junit:4.13.2")
